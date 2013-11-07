@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -13,15 +14,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-
+/**
+ * 
+ * Учебная программа позволяющая загружать изображение из интернета;
+ * 
+ * @author cvazer
+ *
+ */
 public class Main {
 	private static BufferedImage img;
 	private static JButton btn = new JButton("Сохранить это изображение");
 
 	public static void main(String[] args) {
 		try {
-			//Загружаем изображение из директории программы
-			img = ImageIO.read(new File("res/duck.bmp"));
+			//Загружаем изображение из интернета
+			final URL url = new URL(JOptionPane.showInputDialog(null, "Введите адрес картинки, которую хотите загрузить"));
+			img = ImageIO.read(url);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
@@ -40,7 +48,7 @@ public class Main {
 				String path = JOptionPane.showInputDialog(null, "Введите путь по которому "
 						+ "хотите сохранить файлб например C:/vasha_papka");
 				//инициализируем файл по полученному пути
-				File file = new File(path+"/duck.bmp");
+				File file = new File(path+"/img.bmp");
 				//Помещаем все, что выбрасывает ошибку в блок обработки ошибок
 				try {
 					//Создаем файл непосредственно в файловой системе
