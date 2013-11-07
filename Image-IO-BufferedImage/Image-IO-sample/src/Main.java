@@ -6,8 +6,10 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -22,7 +24,8 @@ public class Main {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
-		
+		//Вызываем метод создающий окно
+		createGUI();
 		//Вешаем на кнопку слушатель событий
 		btn.addActionListener(new ActionListener() {
 			
@@ -34,9 +37,9 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				//Спрашиваем у пользователя путь, куда он хочет сохранить файл и складываем его в строку
 				String path = JOptionPane.showInputDialog(null, "Введите путь по которому "
-						+ "хотите сохранить файлб например C:/vasha_papka"+"/duck.bmp");
+						+ "хотите сохранить файлб например C:/vasha_papka");
 				//инициализируем файл по полученному пути
-				File file = new File(path);
+				File file = new File(path+"/duck.bmp");
 				//Помещаем все, что выбрасывает ошибку в блок обработки ошибок
 				try {
 					//Создаем файл непосредственно в файловой системе
@@ -50,6 +53,9 @@ public class Main {
 		});
 	}
 	
+	/**
+	 * Метод создаюший окно
+	 */
 	private static void createGUI(){
 		//Создаем окно с именем Sample
 		JFrame frame = new JFrame("Sample");
@@ -63,6 +69,8 @@ public class Main {
 		frame.setVisible(true);
 		//Устанавливаем на окно менеджер раскладки
 		frame.getContentPane().setLayout(new FlowLayout());
+		//Добавляем картинку в окно
+		frame.getContentPane().add(new JLabel(new ImageIcon(img)));
 		//Добавляем кнопку
 		frame.getContentPane().add(btn);
 	}
