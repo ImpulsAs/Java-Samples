@@ -1,4 +1,5 @@
 package by.zti;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -71,7 +72,7 @@ public class Main {
 		//Заставляем программу закрываться при нажатии крестика
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Устанавливаем размер окна
-		frame.setSize(500, 500);
+		frame.setSize(img.getWidth(), img.getHeight()+64);
 		//Заставляем окно появляться по середине монитора
 		frame.setLocationRelativeTo(null);
 		//Делаем окно видемым
