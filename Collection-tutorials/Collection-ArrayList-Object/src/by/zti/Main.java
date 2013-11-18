@@ -8,7 +8,7 @@ public class Main {
 	private static Random r = new Random();
 
 	public static void main(String[] args) {
-		for(int i=0;i<5000000;i++){
+		for(int i=0;i<5;i++){
 			list.add(new Mobile(r.nextInt(9999999),"abc"+r.nextInt(100)));
 		}
 		for(Mobile m: list){
