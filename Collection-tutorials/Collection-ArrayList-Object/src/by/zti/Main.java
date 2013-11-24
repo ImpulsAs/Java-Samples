@@ -9,8 +9,7 @@ public class Main {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		//Вместо населения листа новыми значениями каждый раз, добавил
-		//сереализацию из файла
+		//Р’РјРµСЃС‚Рѕ РЅР°СЃРµР»РµРЅРёСЏ Р»РёСЃС‚Р° РЅРѕРІС‹РјРё РѕР±СЉРµРєС‚Р°РјРё РєР°Р¶РґС‹Р№ СЂР°Р·, РґРѕР±Р°РІРёР» СЃРµСЂРµР°Р»РёР·Р°С†РёР± РґР°РЅРЅС‹С….
 		list = (ArrayList<Mobile>) SerializationManager.deSerializeData("mobile-list", "ser", "");
 //		for(int i=0;i<5;i++){
 //			list.add(new Mobile(r.nextInt(9999999),"abc"+r.nextInt(100)));
