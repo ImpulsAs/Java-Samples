@@ -1,6 +1,8 @@
 package by.zti;
 
-public class Mobile {
+import java.io.Serializable;
+
+public class Mobile implements Serializable{
 	private int number;
 	private String name;
 
