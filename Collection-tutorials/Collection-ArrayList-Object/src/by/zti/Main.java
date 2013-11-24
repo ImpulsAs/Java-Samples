@@ -9,6 +9,8 @@ public class Main {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
+		//Вместо населения листа новыми значениями каждый раз, добавил
+		//сереализацию из файла
 		list = (ArrayList<Mobile>) SerializationManager.deSerializeData("mobile-list", "ser", "");
 //		for(int i=0;i<5;i++){
 //			list.add(new Mobile(r.nextInt(9999999),"abc"+r.nextInt(100)));
