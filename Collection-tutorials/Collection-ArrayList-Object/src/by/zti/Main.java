@@ -15,7 +15,7 @@ public class Main {
 //			list.add(new Mobile(r.nextInt(9999999),"abc"+r.nextInt(100)));
 //		}
 		for(Mobile m: list){
-			System.out.println(m.getNumber()+" "+m.getName());
+			System.out.println(m.getNumber()+" "+m.getName()); // אבהûנהא
 		}
 		SerializationManager.serializeData(list, "mobile-list", "ser", "");
 	}
