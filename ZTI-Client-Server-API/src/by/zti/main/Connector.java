@@ -16,6 +16,7 @@ public class Connector {
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
 	private boolean isConnected;
+	private IOListener listener;
 	
 	public Connector(String host_ip, int port){
 		this.host_ip = host_ip;
@@ -32,12 +33,17 @@ public class Connector {
 		}
 	}
 	
+	public Object getObject(){
+		return listener.getReadenObject();
+	}
+	
 	public void connect(String host_ip, int port){
 		try {
 			connection = new Socket(InetAddress.getByName(host_ip), port);
 			output = new ObjectOutputStream(connection.getOutputStream());
 			input = new ObjectInputStream(connection.getInputStream());
 			setConnected(true);
+			listener = new IOListener(output, input);
 		} catch (UnknownHostException e) {
 			handleConnectionErrors();
 		} catch (IOException e) {
@@ -111,6 +117,14 @@ public class Connector {
 
 	public void setConnected(boolean isConnected) {
 		this.isConnected = isConnected;
+	}
+
+	public IOListener getListener() {
+		return listener;
+	}
+
+	public void setListener(IOListener listener) {
+		this.listener = listener;
 	}
 	
 	
