@@ -89,7 +89,7 @@ public class Xml {
 		checkFileExistance(xmlFile, false);
 		Document document = new Document();
 		document = parseDocument(document, xmlFile);
-		findNode(document.getRootElement(), nodeName).addContent(new Element(nodeName));
+		findNode(document.getRootElement(), rootName).addContent(new Element(nodeName));
 		saveXml(xmlFile, document);
 	}
 	
