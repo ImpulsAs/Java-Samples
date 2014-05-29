@@ -3,6 +3,7 @@ package by.zti.main;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -10,11 +11,22 @@ public class IOListener implements Runnable {
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private boolean isListeining;
-	private Object readenObject;
+	private ArrayList<Object> readenObject;
 	
 	public IOListener(ObjectOutputStream output, ObjectInputStream input){
 		this.input = input;
 		this.output = output;
+		readenObject = new ArrayList<Object>();
+		new Thread(this).start();
+	}
+	
+	public void sendObject(Object object){
+		try {
+			output.flush();
+			output.writeObject(object);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -22,7 +34,7 @@ public class IOListener implements Runnable {
 		isListeining = true;
 		while(isListeining){
 			try {
-				readenObject = input.readObject();
+				readenObject.add(input.readObject());
 			} catch (ClassNotFoundException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} catch (IOException e) {
@@ -47,8 +59,12 @@ public class IOListener implements Runnable {
 		this.isListeining = isListeining;
 	}
 
-	public Object getReadenObject() {
+	public ArrayList<Object> getReadenObject() {
 		return readenObject;
+	}
+
+	public void clearObjects() {
+		readenObject.clear();
 	}
 
 }

@@ -6,10 +6,11 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class Connector {
+public class ClientConnector {
 	private String host_ip;
 	private int port;
 	private Socket connection;
@@ -18,9 +19,13 @@ public class Connector {
 	private boolean isConnected;
 	private IOListener listener;
 	
-	public Connector(String host_ip, int port){
+	public ClientConnector(String host_ip, int port){
 		this.host_ip = host_ip;
 		this.port = port;
+	}
+	
+	public void sendObject(Object object){
+		listener.sendObject(object);
 	}
 	
 	public void close(){
@@ -33,7 +38,7 @@ public class Connector {
 		}
 	}
 	
-	public Object getObject(){
+	public ArrayList<Object> getObject(){
 		return listener.getReadenObject();
 	}
 	
