@@ -5,14 +5,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 public class User implements Runnable{
 	private Socket connection;
 	private IOListener listener;
 	private ServerConnector connector;
+	private String IP;
 	
 	public User(Socket connection, ServerConnector connector){
 		this.connection = connection;
 		this.connector = connector;
+		this.IP = connection.getInetAddress().getHostAddress();
 		initialise();
 	}
 	
@@ -29,10 +33,18 @@ public class User implements Runnable{
 
 	@Override
 	public void run() {
-		for(Object object: listener.getReadenObject()){
-			connector.addObject(object);
+		while(connector.isRunning()){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if(!listener.getReadenObject().isEmpty()){
+				connector.addObjects(listener.getReadenObject());
+				listener.clearObjects();
+				System.out.println(connector.getReadenObjects().size());
+			}
 		}
-		listener.clearObjects();
 	}
 	
 }

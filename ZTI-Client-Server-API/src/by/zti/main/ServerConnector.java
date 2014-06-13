@@ -23,7 +23,7 @@ public class ServerConnector implements Runnable{
 		readenObjects = new ArrayList<Object>();
 	}
 	
-	public void sendObjext(String key, Object object){
+	public void sendObject(String key, Object object){
 		users.get(key).sendObject(object);
 	}
 	
@@ -34,7 +34,7 @@ public class ServerConnector implements Runnable{
 			readenObjects.clear();
 			server.close();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
@@ -47,12 +47,13 @@ public class ServerConnector implements Runnable{
 				
 				Socket connection = server.accept();
 				if(connection!=null){
+					System.out.println("------ Connected from: "+connection.getInetAddress().getHostAddress()+" ------");
 					users.put(connection.getInetAddress().getHostAddress(), new User(connection, this));
 					connection = null;
 				}
 			}
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
@@ -65,8 +66,8 @@ public class ServerConnector implements Runnable{
 		return this;
 	}
 	
-	public synchronized void addObject(Object object){
-		readenObjects.add(object);
+	public synchronized void addObjects(ArrayList<Object> readenObject){
+		readenObjects.addAll(readenObject);
 	}
 	
 	public int getPort() {

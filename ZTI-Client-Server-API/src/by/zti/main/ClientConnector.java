@@ -34,11 +34,11 @@ public class ClientConnector {
 			output.close();
 			setConnected(false);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
-	public ArrayList<Object> getObject(){
+	public ArrayList<Object> getRedenObjects(){
 		return listener.getReadenObject();
 	}
 	
@@ -52,7 +52,7 @@ public class ClientConnector {
 		} catch (UnknownHostException e) {
 			handleConnectionErrors();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
@@ -62,23 +62,23 @@ public class ClientConnector {
 			output = new ObjectOutputStream(connection.getOutputStream());
 			input = new ObjectInputStream(connection.getInputStream());
 		} catch (UnknownHostException e) {
-			handleConnectionErrors();
+			//handleConnectionErrors();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
 	private void handleConnectionErrors(){
-		int new_host_port = 0;
-		String new_host_ip = JOptionPane.showInputDialog(null, "Can't connect the server (Error #11). Pleas, type new server IP adress or type 'CANCELL' to exit");
-		if (new_host_ip.contains("CANCELL")){
-			System.exit(11);
-		}else{
-			try{
-				 new_host_port = Integer.parseInt(JOptionPane.showInputDialog(null, "Please, enter server port here"));
-			}catch (Exception e2){};
-			connect(new_host_ip, new_host_port);
-		}
+//		int new_host_port = 0;
+//		//String new_host_ip = JOptionPane.showInputDialog(null, "Can't connect the server (Error #11). Pleas, type new server IP adress or type 'CANCELL' to exit");
+//		if (new_host_ip.contains("CANCELL")){
+//			System.exit(11);
+//		}else{
+//			try{
+//				 //new_host_port = Integer.parseInt(JOptionPane.showInputDialog(null, "Please, enter server port here"));
+//			}catch (Exception e2){};
+//			connect(new_host_ip, new_host_port);
+//		}
 	}
 	
 	public String getHost_ip() {

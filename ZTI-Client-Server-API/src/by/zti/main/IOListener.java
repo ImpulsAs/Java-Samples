@@ -36,9 +36,9 @@ public class IOListener implements Runnable {
 			try {
 				readenObject.add(input.readObject());
 			} catch (ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
+				//JOptionPane.showMessageDialog(null, e.getMessage());
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
+				//JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		}
 		close();
